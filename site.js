@@ -71,6 +71,7 @@ function joineryProjectPage(project) {
     <a href="assets/images/joinery-hvac-spatial-planning.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-spatial-planning.png" alt="HVAC spatial planning diagram"><span>HVAC spatial planning</span></a>
     <a href="assets/images/joinery-hvac-diagram.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-diagram.png" alt="HVAC systems diagram"><span>HVAC system</span></a>
     <a href="assets/images/joinery-physical-model.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model.png" alt="Physical model photograph"><span>Physical model</span></a>
+    <div class="joinery-catalogue-preview" aria-hidden="true"><img alt=""></div>
   </div></section>`;
 }
 
@@ -117,7 +118,7 @@ function projectPage() {
 }
 
 function constrainImageZoom() {
-  document.querySelectorAll('.joinery-catalogue-grid a, .project-image--zoom').forEach((item) => {
+  document.querySelectorAll('.project-image--zoom').forEach((item) => {
     const image = item.querySelector('img');
     if (!image) return;
     const expand = () => {
@@ -139,9 +140,32 @@ function constrainImageZoom() {
   });
 }
 
+function joineryCataloguePreview() {
+  document.querySelectorAll('.joinery-catalogue-grid').forEach((grid) => {
+    const preview = grid.querySelector('.joinery-catalogue-preview');
+    const previewImage = preview?.querySelector('img');
+    if (!preview || !previewImage) return;
+    grid.querySelectorAll('a').forEach((item) => {
+      const image = item.querySelector('img');
+      if (!image) return;
+      const show = () => {
+        previewImage.src = image.currentSrc || image.src;
+        previewImage.alt = image.alt;
+        preview.classList.add('is-visible');
+      };
+      const hide = () => preview.classList.remove('is-visible');
+      item.addEventListener('pointerenter', show);
+      item.addEventListener('pointerleave', hide);
+      item.addEventListener('focusin', show);
+      item.addEventListener('focusout', hide);
+    });
+  });
+}
+
 workMenu();
 responsiveHeader();
 index();
 collectionPage();
 projectPage();
 constrainImageZoom();
+joineryCataloguePreview();
