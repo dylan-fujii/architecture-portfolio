@@ -99,5 +99,10 @@ body{font-size:var(--reading-size)}
 @media(min-width:1440px){.project-chapter{gap:6vw}.project-intro{gap:6vw}.project-chapter h2{font-size:clamp(2.4rem,3.8vw,5rem)}}
 @media(max-width:760px){.home-hero-credit{right:5vw;width:auto;font-size:clamp(.92rem,3.7vw,1.08rem);line-height:1.45}.home-award-link{font-size:.78rem;max-width:calc(100% - 10vw)}}
 
+/* A short personal note receives the same restrained, image-first rhythm as the portfolio. */
+.about-page{min-height:calc(100dvh - 78px);max-width:72rem;padding:12vw 4vw;display:grid;align-content:center}.about-page h1{font-size:clamp(3.4rem,8vw,8.5rem);letter-spacing:-.085em;line-height:.88;font-weight:500;margin:0 0 3rem}.about-page h1 span{display:block;font-size:.32em;letter-spacing:-.045em;margin-top:.65rem}.about-page>p:not(.eyebrow){max-width:34rem;font-size:var(--reading-size);line-height:1.55;margin:0 0 1.15rem}.about-page .eyebrow{margin-bottom:2rem}
+.home-contact{gap:1rem}
+@media(max-width:760px){.about-page{padding:22vw 5vw;align-content:start}.about-page h1{margin-bottom:2.5rem}}
+
 /* Bolt Housing: expand floor-plan inspection without changing the grid's resting layout. */
 .project-chapter-media .project-image--zoom{position:relative;overflow:visible;z-index:0}.project-chapter-media .project-image--zoom img{pointer-events:none;transition:transform .24s ease;transform-origin:center}.project-chapter-media .project-image--zoom figcaption{position:relative;background:#fff}.project-chapter-media .project-image--zoom:hover,.project-chapter-media .project-image--zoom:focus-within{z-index:5}.project-chapter-media .project-image--zoom:hover img,.project-chapter-media .project-image--zoom:focus-within img{transform:scale(3)}
