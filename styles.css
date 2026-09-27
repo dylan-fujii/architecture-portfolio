@@ -88,5 +88,14 @@
 .portfolio-grid{gap:clamp(1rem,1.6vw,1.7rem)}.project-tile figure{isolation:isolate}.project-tile h3{margin:.8rem 0 0;font-size:1.05rem;letter-spacing:-.04em;font-weight:500}.tile-overlay{align-items:flex-start;justify-content:flex-end;gap:.4rem;padding:1.15rem;background:rgba(255,255,255,.78);color:var(--ink)!important;font-weight:400!important;line-height:1!important;text-align:left}.tile-year{display:block;font-size:clamp(1.55rem,3.2vw,3.65rem);letter-spacing:-.08em;font-weight:500;line-height:.88}.tile-studio{display:block;max-width:16rem;color:var(--slate);font:.59rem/1.35 var(--mono);font-weight:400;letter-spacing:.07em;text-transform:uppercase}.project-tile:hover .tile-overlay,.project-tile:focus-visible .tile-overlay{opacity:1}.project-tile:hover h3,.project-tile:focus-visible h3{color:var(--ink)}
 @media(max-width:760px){.tile-overlay{position:static;display:block!important;padding:.75rem 0 0;background:transparent;color:var(--ink)!important;opacity:1}.tile-year{font-size:1.2rem;letter-spacing:-.055em}.tile-studio{margin-top:.3rem;font-size:.55rem}.project-tile h3{margin-top:.55rem}}
 
+/* Fluid reading scale: copy gains presence on broad screens without competing with the drawings. */
+:root{--reading-size:clamp(1rem,.82rem + .35vw,1.28rem);--caption-size:clamp(.67rem,.58rem + .12vw,.8rem)}
+body{font-size:var(--reading-size)}
+.lede,.source-text p,.feature-copy>p:not(.eyebrow),.material-section p:last-child,.collection-copy>p:not(.eyebrow),.reading-copy p,.joinery-concept-copy p:not(.eyebrow),.joinery-catalogue header>p:last-child{font-size:var(--reading-size);line-height:1.62}
+.project-summary dd{font-size:clamp(.98rem,.84rem + .22vw,1.2rem)}
+.project-hero-image figcaption,.project-image figcaption,.project-chapter-media figcaption,.joinery-concept figcaption,.joinery-context figcaption,.joinery-isonometric figcaption,.project-board-image figcaption,.hero-board span,.image-frame figcaption{font-size:var(--caption-size)}
+.home-hero-credit{font-size:clamp(1rem,.82rem + .38vw,1.35rem)}
+@media(min-width:1440px){.project-chapter{gap:6vw}.project-intro{gap:6vw}.project-chapter h2{font-size:clamp(2.4rem,3.8vw,5rem)}}
+
 /* Bolt Housing: expand floor-plan inspection without changing the grid's resting layout. */
 .project-chapter-media .project-image--zoom{position:relative;overflow:visible;z-index:0}.project-chapter-media .project-image--zoom img{pointer-events:none;transition:transform .24s ease;transform-origin:center}.project-chapter-media .project-image--zoom figcaption{position:relative;background:#fff}.project-chapter-media .project-image--zoom:hover,.project-chapter-media .project-image--zoom:focus-within{z-index:5}.project-chapter-media .project-image--zoom:hover img,.project-chapter-media .project-image--zoom:focus-within img{transform:scale(3)}
