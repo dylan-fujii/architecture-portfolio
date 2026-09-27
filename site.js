@@ -116,8 +116,32 @@ function projectPage() {
   target.innerHTML = `<section class="project-intro"><section class="project-summary"><p class="eyebrow">${project.category}</p><h1>${project.title}</h1>${meta ? `<dl>${meta}</dl>` : ''}${project.note ? `<p class="project-note">${project.note}</p>` : ''}${project.description ? `<p class="lede">${project.description}</p>` : ''}${text ? `<div class="source-text">${text}</div>` : ''}${links}</section><section class="project-page-hero"><figure><img class="project-hero-main" src="${detailHero}" alt="${project.title} hero image">${project.heroHover ? `<img class="project-hero-hover" src="${project.heroHover}" alt="">` : ''}</figure></section></section>${images ? `<section class="project-narrative">${images}</section>` : ''}${boardSection}`;
 }
 
+function constrainImageZoom() {
+  document.querySelectorAll('.joinery-catalogue-grid a, .project-image--zoom').forEach((item) => {
+    const image = item.querySelector('img');
+    if (!image) return;
+    const expand = () => {
+      const bounds = image.getBoundingClientRect();
+      const horizontalOrigin = bounds.left + bounds.width / 2 < window.innerWidth / 2 ? 'left' : 'right';
+      const verticalOrigin = bounds.top + bounds.height / 2 < window.innerHeight / 2 ? 'top' : 'bottom';
+      const availableWidth = horizontalOrigin === 'left' ? window.innerWidth - bounds.left - 20 : bounds.right - 20;
+      const availableHeight = verticalOrigin === 'top' ? window.innerHeight - bounds.top - 20 : bounds.bottom - 20;
+      const scale = Math.max(1, Math.min(3, availableWidth / bounds.width, availableHeight / bounds.height));
+      item.style.setProperty('--zoom-scale', scale.toFixed(3));
+      item.style.setProperty('--zoom-origin', `${horizontalOrigin} ${verticalOrigin}`);
+      item.classList.add('image-expanded');
+    };
+    const collapse = () => item.classList.remove('image-expanded');
+    item.addEventListener('pointerenter', expand);
+    item.addEventListener('pointerleave', collapse);
+    item.addEventListener('focusin', expand);
+    item.addEventListener('focusout', collapse);
+  });
+}
+
 workMenu();
 responsiveHeader();
 index();
 collectionPage();
 projectPage();
+constrainImageZoom();
