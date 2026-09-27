@@ -94,8 +94,8 @@ body{font-size:var(--reading-size)}
 .lede,.source-text p,.feature-copy>p:not(.eyebrow),.material-section p:last-child,.collection-copy>p:not(.eyebrow),.reading-copy p,.joinery-concept-copy p:not(.eyebrow),.joinery-catalogue header>p:last-child{font-size:var(--reading-size);line-height:1.62}
 .project-summary dd{font-size:clamp(.98rem,.84rem + .22vw,1.2rem)}
 .project-hero-image figcaption,.project-image figcaption,.project-chapter-media figcaption,.joinery-concept figcaption,.joinery-context figcaption,.joinery-isonometric figcaption,.project-board-image figcaption,.hero-board span,.image-frame figcaption{font-size:var(--caption-size)}
-.home-hero-credit{right:auto;width:min(46vw,54rem);font-size:clamp(1.15rem,.85rem + .62vw,1.72rem);line-height:1.42}
-.home-award-link{font-size:clamp(.9rem,.73rem + .22vw,1.15rem);max-width:19rem}
+.home-hero-credit{right:auto;width:min(46vw,54rem);font-size:clamp(1.05rem,.85rem + .45vw,1.42rem);line-height:1.42}
+.home-award-link{font-size:clamp(.85rem,.73rem + .18vw,1rem);max-width:19rem}
 @media(min-width:1440px){.project-chapter{gap:6vw}.project-intro{gap:6vw}.project-chapter h2{font-size:clamp(2.4rem,3.8vw,5rem)}}
 @media(max-width:760px){.home-hero-credit{right:5vw;width:auto;font-size:clamp(.92rem,3.7vw,1.08rem);line-height:1.45}.home-award-link{font-size:.78rem;max-width:calc(100% - 10vw)}}
 
