@@ -1,0 +1,110 @@
+function workMenu() {
+  const target = document.querySelector('#project-menu');
+  if (!target) return;
+  target.innerHTML = `<a href="collection.html?collection=student"><span>Student work</span><strong>Projects + abstractions</strong></a>`;
+}
+
+function responsiveHeader() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  let previousY = window.scrollY;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    window.requestAnimationFrame(() => {
+      const currentY = window.scrollY;
+      const movingDown = currentY > previousY;
+      header.classList.toggle('site-header--hidden', movingDown && currentY > 110);
+      previousY = currentY;
+      ticking = false;
+    });
+    ticking = true;
+  }, { passive: true });
+}
+
+function index() {
+  const list = document.querySelector('#process-list');
+  if (!list) return;
+  list.innerHTML = ["student", "internship"].map((id, index) => { const collection = collections[id]; return `<a class="project-index-row" href="collection.html?collection=${id}"><b>0${index + 1}</b><div><span>${id === "student" ? "Projects, abstractions" : "DELV Design"}</span><strong>${collection.title}</strong><small>${collection.intro}</small></div><span class="arrow">↗</span></a>`; }).join('');
+}
+
+function collectionPage() {
+  const target = document.querySelector('#collection-page');
+  if (!target) return;
+  const id = new URLSearchParams(location.search).get('collection') || 'student';
+  const collection = collections[id] || collections.student;
+  document.title = `${collection.title} | Dylan Fujii`;
+  const makeTiles = (ids) => ids.map((projectId) => {
+    const project = projects[projectId];
+    return `<a class="project-tile ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}<figcaption class="tile-overlay"><span>${project.yearLabel || project.year}</span></figcaption></figure><h3>${project.title}</h3></a>`;
+  }).join('');
+  const sections = collection.groups ? collection.groups.map((group) => `<section class="media-section"><header><p class="eyebrow">Student work</p><h2>${group.title}</h2><p>${group.intro}</p></header><div class="portfolio-grid portfolio-grid-${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}">${makeTiles(group.ids)}</div></section>`).join('') : `<section class="media-section"><header><p class="eyebrow">Professional work</p><h2>${collection.title}</h2><p>${collection.intro}</p></header><div class="portfolio-grid">${makeTiles(collection.ids)}</div></section>`;
+  const studentStatement = id === 'student' ? `<div class="collection-statement"><p>The projects are a culmination of meaningful mentorships and relationships, late nights in the studio, and a drive to create.</p><p><em>Homo ludens</em>—<strong>playing man</strong>: culture arises from and is shaped by play. Play is not separate from society; it is how we test ideas, form relationships, and begin meaningful ventures.</p></div>` : '';
+  target.innerHTML = `<section class="collection-hero"><h1>${collection.title}</h1>${studentStatement}</section>${sections}`;
+}
+
+function joineryProjectPage(project) {
+  return `<section class="project-intro joinery-intro"><section class="project-summary joinery-summary"><p class="eyebrow">Student work: Projects</p><h1>The Joinery</h1><dl><div><dt>Year</dt><dd>2026</dd></div><div><dt>Recognition</dt><dd>2nd Place, ACSA Timber in the City Competition 2026</dd></div></dl><p class="lede">Sitting at the vibrant intersection of Ball State University and the Village, a community-rooted district that connects campus and city, the Joinery is an architectural idea that creates a physical and social link, offering a bold and inviting welcome to students while supporting neighborhood revitalization within the Village.</p></section><section class="project-page-hero joinery-hero"><figure><img src="${project.hero}" alt="The Joinery exterior rendering"></figure></section></section>
+  <section class="joinery-concept"><div class="joinery-concept-copy"><p class="eyebrow">01 / Concept</p><h2>Live-Work Walk-Up Housing</h2><p>As the Village faces change through new development from Ball State, the Joinery responds to changing conditions through a form that fits its context while using durable, resilient materials.</p><p>Within the current context, housing is largely limited to single-family homes or large student apartments. Growth near campus prioritizes students, displacing locals and creating a divide between communities; inactive ground levels reduce neighborhood vibrancy.</p><p>The proposal introduces diverse unit types, increasing density while maintaining neighborhood scale; it integrates retail and shared spaces to encourage daily interaction, with transparent active edges and outdoor rooms.</p></div><figure class="joinery-parti"><img src="assets/images/joinery-parti-and-concept.png" alt="Scale, lighting, circulation, user privacy, and public-private parti diagrams"><figcaption>Parti: scale, light, circulation, privacy, and public life</figcaption></figure><figure class="joinery-history"><img src="assets/images/joinery-village-timeline.png" alt="Historical Village timeline"><figcaption>Historical context: the Village</figcaption></figure></section>
+  <section class="joinery-context"><header><p class="eyebrow">02 / Site</p><h2>Site + context</h2></header><figure><img src="assets/images/joinery-site-context.png" alt="The relation between the Joinery, Ball State University, and the Village"><figcaption>The relation between Ball State University and the Village</figcaption></figure><figure><img src="assets/images/joinery-site-plan-close.png" alt="Detailed site plan"><figcaption>Site plan</figcaption></figure></section>
+  <section class="joinery-isonometric"><header><p class="eyebrow">03 / Building systems</p><h2>Spatial planning</h2></header><figure><img src="assets/images/joinery-labeled-isonometric.png" alt="Labeled isonometric building diagram with solar-assisted HVAC"><figcaption>Spatial planning and solar-assisted air system</figcaption></figure></section>
+  <section class="joinery-catalogue"><header><p class="eyebrow">04 / Technical catalogue</p><h2>Drawings + models</h2><p>Open an image to study the full drawing.</p></header><div class="joinery-catalogue-grid">
+    <a href="assets/images/joinery-physical-model-context.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model-context.png" alt="Physical model showing the Joinery structure"><span>Physical model</span></a>
+    <a href="assets/images/timber-p02-11.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p02-11.jpg" alt="Floor plan drawings"><span>Floor plans</span></a>
+    <a href="assets/images/timber-p03-12.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p03-12.jpg" alt="Structural drawing"><span>Structural system</span></a>
+    <a href="assets/images/joinery-wall-systems.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-systems.png" alt="Wall system assemblies"><span>Wall systems</span></a>
+    <a href="assets/images/joinery-roof-cladding.png" target="_blank" rel="noopener"><img src="assets/images/joinery-roof-cladding.png" alt="Roof cladding detail"><span>Roof cladding</span></a>
+    <a href="assets/images/joinery-wall-cladding.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-cladding.png" alt="Wall cladding detail"><span>Wall cladding</span></a>
+    <a href="assets/images/joinery-hvac-spatial-planning.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-spatial-planning.png" alt="HVAC spatial planning diagram"><span>HVAC spatial planning</span></a>
+    <a href="assets/images/joinery-hvac-diagram.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-diagram.png" alt="HVAC systems diagram"><span>HVAC system</span></a>
+    <a href="assets/images/joinery-physical-model.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model.png" alt="Physical model photograph"><span>Physical model</span></a>
+  </div></section>`;
+}
+
+const projectChapters = {
+  gallery: [["01 / Concept", "Parti + circulation", [0, 1]], ["02 / Building", "Section + structure", [2, 3]]],
+  bolt: [["01 / Envelope", "Street elevation", [0, 1]], ["02 / Material study", "Physical model", [2]], ["03 / Organization", "Floor plans", [3, 4]]],
+  highechelon: [["01 / Site + movement", "Floor plans", [0]], ["02 / Study", "Physical model", [1]]],
+  uniformed: [["01", "Building study", [0, 1]], ["02", "Parti diagram", [2]], ["03", "Site: Broad Ripple, IN", [3]], ["04", "Visualizations", [4, 5, 6]]],
+  steel: [["01 / Manifesto", "Steel as a material and idea", [0]], ["02 / Process", "Tectonic manual + Rhino study", [1, 2]], ["03 / Outcome", "The telescope reimagined", [3]]],
+  tectonics: [["01 / Material study", "Physical model", [0]], ["02 / Section", "Section cuts", [1, 2]]],
+  inverse: [["01 / Inversion", "Exploded study model", [0]]],
+  altadena: [["01", "Natural disaster: fire", [0, 1]], ["02", "Exploded axon", [2]], ["03", "Section studies", [3, 4]]],
+  mulberry: [["01 / Documentation", "Construction detail drawing", [0]]],
+  southbend: [["01 / Site analysis", "Experience map", [0]]],
+  childrens: []
+};
+
+function narrativeMedia(project, id) {
+  const chapters = projectChapters[id] || [];
+  const figure = (index) => {
+    const [src, alt, layout] = project.media[index];
+    const zoomable = id === 'bolt' && (index === 3 || index === 4) ? ' project-image--zoom' : '';
+    return `<figure class="project-image ${layout || 'wide'}${zoomable}"><img src="${src}" alt="${alt}"><figcaption>${alt}</figcaption></figure>`;
+  };
+  if (!chapters.length) return project.media.map((_, index) => figure(index)).join('');
+  return chapters.map(([eyebrow, title, indices]) => `<section class="project-chapter"><header><p class="eyebrow">${eyebrow}</p><h2>${title}</h2></header><div class="project-chapter-media">${indices.map(figure).join('')}</div></section>`).join('');
+}
+
+function projectPage() {
+  const target = document.querySelector('#project-page');
+  if (!target) return;
+  const id = new URLSearchParams(location.search).get('project') || 'joinery';
+  const project = projects[id] || projects.joinery;
+  document.title = `${project.title} | Dylan Fujii`;
+  if (id === 'joinery') { target.innerHTML = joineryProjectPage(project); return; }
+  const text = project.text.map((paragraph) => `<p>${paragraph}</p>`).join('');
+  const images = narrativeMedia(project, id);
+  const links = (project.links || []).map(([label, href]) => `<a class="project-reference" href="${href}" target="_blank" rel="noopener">${label} ↗</a>`).join('');
+  const boards = (project.boards || []).map(([src, alt]) => `<figure class="project-board-image"><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${alt}"></a><figcaption>${alt} - open full board ↗</figcaption></figure>`).join('');
+  const boardSection = boards ? `<section class="project-board"><header><p class="eyebrow">Complete presentation</p><h2>Project Board</h2></header><div>${boards}</div></section>` : '';
+  const detailHero = project.detailHero || project.hero;
+  const meta = `${project.year ? `<div><dt>Year</dt><dd>${project.year}</dd></div>` : ''}${project.tools ? `<div><dt>Tools</dt><dd>${project.tools}</dd></div>` : ''}`;
+  target.innerHTML = `<section class="project-intro"><section class="project-summary"><p class="eyebrow">${project.category}</p><h1>${project.title}</h1>${meta ? `<dl>${meta}</dl>` : ''}${project.note ? `<p class="project-note">${project.note}</p>` : ''}${project.description ? `<p class="lede">${project.description}</p>` : ''}${text ? `<div class="source-text">${text}</div>` : ''}${links}</section><section class="project-page-hero"><figure><img class="project-hero-main" src="${detailHero}" alt="${project.title} hero image">${project.heroHover ? `<img class="project-hero-hover" src="${project.heroHover}" alt="">` : ''}</figure></section></section>${images ? `<section class="project-narrative">${images}</section>` : ''}${boardSection}`;
+}
+
+workMenu();
+responsiveHeader();
+index();
+collectionPage();
+projectPage();
