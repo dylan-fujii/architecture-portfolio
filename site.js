@@ -62,15 +62,15 @@ function joineryProjectPage(project) {
   <section class="joinery-context joinery-context--axon"><header><p class="eyebrow">02 / Site</p><h2>Site + context</h2></header><figure><img src="assets/images/joinery-site-context-cropped.png" alt="The relation between the Joinery, Ball State University, and the Village"><figcaption>The relation between Ball State University and the Village</figcaption></figure></section>
   <section class="joinery-isonometric"><header><p class="eyebrow">03 / Building systems</p><h2>Spatial planning</h2></header><figure><img src="assets/images/joinery-labeled-isonometric.png" alt="Labeled isonometric building diagram with solar-assisted HVAC"><figcaption>Spatial planning and solar-assisted air system</figcaption></figure></section>
   <section class="joinery-catalogue"><header><p class="eyebrow">04 / Technical catalogue</p><h2>Drawings + models</h2><p>Open an image to study the full drawing.</p></header><div class="joinery-catalogue-grid">
-    <a href="assets/images/joinery-physical-model-context.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model-context.png" alt="Physical model showing the Joinery structure"><span>Physical model</span></a>
-    <a href="assets/images/timber-p02-11.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p02-11.jpg" alt="Floor plan drawings"><span>Floor plans</span></a>
-    <a href="assets/images/timber-p03-12.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p03-12.jpg" alt="Structural drawing"><span>Structural system</span></a>
-    <a href="assets/images/joinery-wall-systems.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-systems.png" alt="Wall system assemblies"><span>Wall systems</span></a>
-    <a href="assets/images/joinery-roof-cladding.png" target="_blank" rel="noopener"><img src="assets/images/joinery-roof-cladding.png" alt="Roof cladding detail"><span>Roof cladding</span></a>
-    <a href="assets/images/joinery-wall-cladding.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-cladding.png" alt="Wall cladding detail"><span>Wall cladding</span></a>
-    <a href="assets/images/joinery-hvac-spatial-planning.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-spatial-planning.png" alt="HVAC spatial planning diagram"><span>HVAC spatial planning</span></a>
-    <a href="assets/images/joinery-hvac-diagram.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-diagram.png" alt="HVAC systems diagram"><span>HVAC system</span></a>
-    <a href="assets/images/joinery-physical-model.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model.png" alt="Physical model photograph"><span>Physical model</span></a>
+    <a href="assets/images/joinery-physical-model-context.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model-context.png" alt="Physical model showing the Joinery structure"></a>
+    <a href="assets/images/timber-p02-11.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p02-11.jpg" alt="Floor plan drawings"></a>
+    <a href="assets/images/timber-p03-12.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p03-12.jpg" alt="Structural drawing"></a>
+    <a href="assets/images/joinery-wall-systems.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-systems.png" alt="Wall system assemblies"></a>
+    <a href="assets/images/joinery-roof-cladding.png" target="_blank" rel="noopener"><img src="assets/images/joinery-roof-cladding.png" alt="Roof cladding detail"></a>
+    <a href="assets/images/joinery-wall-cladding.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-cladding.png" alt="Wall cladding detail"></a>
+    <a href="assets/images/joinery-hvac-spatial-planning.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-spatial-planning.png" alt="HVAC spatial planning diagram"></a>
+    <a href="assets/images/joinery-hvac-diagram.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-diagram.png" alt="HVAC systems diagram"></a>
+    <a href="assets/images/joinery-physical-model.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model.png" alt="Physical model photograph"></a>
     <div class="joinery-catalogue-preview" aria-hidden="true"><img alt=""></div>
   </div></section>`;
 }
