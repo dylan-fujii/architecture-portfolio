@@ -139,3 +139,13 @@ body{font-size:var(--reading-size)}
 .about-copy{max-width:38rem}.about-copy h1{font-size:clamp(3.4rem,7.2vw,8rem);letter-spacing:-.085em;line-height:.88;font-weight:500;margin:0 0 3rem}.about-copy h1 span{display:block;font-size:.32em;letter-spacing:-.045em;margin-top:.65rem}.about-copy>p:not(.eyebrow){max-width:34rem;font-size:var(--reading-size);line-height:1.55;margin:0 0 1.15rem}.about-copy .eyebrow{margin-bottom:2rem}
 .about-portrait{width:min(100%,31rem);margin:0;justify-self:end}.about-portrait img{width:100%;height:auto;object-fit:contain;background:#fff}
 @media(max-width:760px){.about-page{grid-template-columns:1fr;gap:3rem}.about-copy h1{margin-bottom:2.5rem}.about-portrait{justify-self:start;width:min(100%,26rem)}}
+
+/* Mobile catalogue metadata is always present in the reading flow, never hover-dependent. */
+@media(max-width:760px){
+  .portfolio-grid .project-tile{overflow:visible}
+  .portfolio-grid .project-tile figure{overflow:visible}
+  .portfolio-grid .project-tile .tile-overlay{position:static!important;display:block!important;visibility:visible!important;opacity:1!important;min-height:0!important;padding:.8rem 0 0!important;background:transparent!important;color:var(--ink)!important}
+  .portfolio-grid .project-tile .tile-year{display:block!important;visibility:visible!important;font-size:1.25rem!important;line-height:1!important}
+  .portfolio-grid .project-tile .tile-studio{display:block!important;visibility:visible!important;margin-top:.35rem!important;font-size:.62rem!important;line-height:1.4!important;color:var(--slate)!important}
+  .portfolio-grid .project-tile h3{display:block!important;visibility:visible!important;opacity:1!important;margin:.65rem 0 0!important;color:var(--ink)!important;font-size:1.18rem!important;line-height:1.05!important}
+}
