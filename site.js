@@ -25,7 +25,7 @@ function responsiveHeader() {
 function index() {
   const list = document.querySelector('#process-list');
   if (!list) return;
-  list.innerHTML = ["student", "internship"].map((id, index) => { const collection = collections[id]; return `<a class="project-index-row" href="collection.html?collection=${id}"><b>0${index + 1}</b><div><span>${id === "student" ? "Projects, abstractions" : "DELV Design"}</span><strong>${collection.title}</strong><small>${collection.intro}</small></div><span class="arrow">↗</span></a>`; }).join('');
+  list.innerHTML = ["student", "internship"].map((id, index) => { const collection = collections[id]; return `<a class="project-index-row" href="collection.html?collection=${id}"><b>0${index + 1}</b><div><span>${id === "student" ? "Projects, abstractions" : "DELV Design"}</span><strong>${collection.title}</strong><small>${collection.intro}</small></div><span class="arrow link-arrow">↗</span></a>`; }).join('');
 }
 
 const studioByProject = {
@@ -49,7 +49,7 @@ function collectionPage() {
   const makeTiles = (ids) => ids.map((projectId) => {
     const project = projects[projectId];
     const studio = studioByProject[projectId];
-    return `<a class="project-tile project-tile-${projectId} ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}<figcaption class="tile-overlay"><span class="tile-year">${project.yearLabel || project.year}</span>${studio ? `<small class="tile-studio">Studio ${studio}</small>` : ''}</figcaption></figure><h3>${project.title}</h3></a>`;
+    return `<a class="project-tile project-tile-${projectId} ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}<figcaption class="tile-overlay"><strong class="tile-mobile-title">${project.title}</strong><span class="tile-year">${project.yearLabel || project.year}</span>${studio ? `<small class="tile-studio">Studio ${studio}</small>` : ''}</figcaption></figure><h3>${project.title}</h3></a>`;
   }).join('');
   const sections = collection.groups ? collection.groups.map((group) => `<section id="${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}" class="media-section"><header><h2>${group.title}</h2>${group.intro ? `<p>${group.intro}</p>` : ''}</header><div class="portfolio-grid portfolio-grid-${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}">${makeTiles(group.ids)}</div></section>`).join('') : `<section class="media-section"><header><p class="eyebrow">Professional work</p><h2>${collection.title}</h2><p>${collection.intro}</p></header><div class="portfolio-grid">${makeTiles(collection.ids)}</div></section>`;
   const studentStatement = id === 'student' ? `<div class="collection-statement"><p>The projects are a culmination of meaningful mentorships and relationships, late nights in the studio, and a drive to create.</p><p><em>Homo ludens</em>—<strong>playing man</strong>: culture arises from and is shaped by play. Play is not separate from society; it is how we test ideas, form relationships, and begin meaningful ventures.</p><p>I hope to continue aligning my efforts with playful yet productive projects in the future.</p></div>` : '';
@@ -109,7 +109,7 @@ function projectPage() {
   if (id === 'joinery') { target.innerHTML = joineryProjectPage(project); return; }
   const text = project.text.map((paragraph) => `<p>${paragraph}</p>`).join('');
   const images = narrativeMedia(project, id);
-  const links = (project.links || []).map(([label, href]) => `<a class="project-reference" href="${href}" target="_blank" rel="noopener">${label} ↗</a>`).join('');
+  const links = (project.links || []).map(([label, href]) => `<a class="project-reference" href="${href}" target="_blank" rel="noopener">${label} <span class="link-arrow">↗</span></a>`).join('');
   const boards = (project.boards || []).map(([src, alt]) => `<figure class="project-board-image"><img src="${src}" alt="${alt}"><figcaption>${alt}</figcaption></figure>`).join('');
   const boardSection = boards ? `<section class="project-board"><header><p class="eyebrow">Complete presentation</p><h2>Project Board</h2></header><div>${boards}</div></section>` : '';
   const detailHero = project.detailHero || project.hero;

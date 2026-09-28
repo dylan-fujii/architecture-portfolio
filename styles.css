@@ -145,7 +145,10 @@ body{font-size:var(--reading-size)}
   .portfolio-grid .project-tile{overflow:visible}
   .portfolio-grid .project-tile figure{overflow:visible}
   .portfolio-grid .project-tile .tile-overlay{position:static!important;display:block!important;visibility:visible!important;opacity:1!important;min-height:0!important;padding:.8rem 0 0!important;background:transparent!important;color:var(--ink)!important}
-  .portfolio-grid .project-tile .tile-year{display:block!important;visibility:visible!important;font-size:1.25rem!important;line-height:1!important}
+  .portfolio-grid .project-tile .tile-mobile-title{display:block!important;visibility:visible!important;font-size:1.18rem!important;font-weight:500!important;letter-spacing:-.04em!important;line-height:1.05!important;color:var(--ink)!important}
+  .portfolio-grid .project-tile .tile-year{display:none!important}
   .portfolio-grid .project-tile .tile-studio{display:block!important;visibility:visible!important;margin-top:.35rem!important;font-size:.62rem!important;line-height:1.4!important;color:var(--slate)!important}
-  .portfolio-grid .project-tile h3{display:block!important;visibility:visible!important;opacity:1!important;margin:.65rem 0 0!important;color:var(--ink)!important;font-size:1.18rem!important;line-height:1.05!important}
+  .portfolio-grid .project-tile h3{display:none!important}
 }
+
+.tile-mobile-title{display:none}.link-arrow{display:inline-block;margin-left:.24em;font:inherit;line-height:1;vertical-align:baseline}
