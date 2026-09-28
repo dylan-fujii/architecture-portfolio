@@ -49,10 +49,10 @@ function collectionPage() {
   const makeTiles = (ids) => ids.map((projectId) => {
     const project = projects[projectId];
     const studio = studioByProject[projectId];
-    return `<a class="project-tile ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}<figcaption class="tile-overlay"><span class="tile-year">${project.yearLabel || project.year}</span>${studio ? `<small class="tile-studio">Studio ${studio}</small>` : ''}</figcaption></figure><h3>${project.title}</h3></a>`;
+    return `<a class="project-tile project-tile-${projectId} ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}<figcaption class="tile-overlay"><span class="tile-year">${project.yearLabel || project.year}</span>${studio ? `<small class="tile-studio">Studio ${studio}</small>` : ''}</figcaption></figure><h3>${project.title}</h3></a>`;
   }).join('');
   const sections = collection.groups ? collection.groups.map((group) => `<section id="${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}" class="media-section"><header><h2>${group.title}</h2>${group.intro ? `<p>${group.intro}</p>` : ''}</header><div class="portfolio-grid portfolio-grid-${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}">${makeTiles(group.ids)}</div></section>`).join('') : `<section class="media-section"><header><p class="eyebrow">Professional work</p><h2>${collection.title}</h2><p>${collection.intro}</p></header><div class="portfolio-grid">${makeTiles(collection.ids)}</div></section>`;
-  const studentStatement = id === 'student' ? `<div class="collection-statement"><p>The projects are a culmination of meaningful mentorships and relationships, late nights in the studio, and a drive to create.</p><p><em>Homo ludens</em>—<strong>playing man</strong>: culture arises from and is shaped by play. Play is not separate from society; it is how we test ideas, form relationships, and begin meaningful ventures.</p><p>I hope to continue aligning my efforts with fun yet productive projects in the future.</p></div>` : '';
+  const studentStatement = id === 'student' ? `<div class="collection-statement"><p>The projects are a culmination of meaningful mentorships and relationships, late nights in the studio, and a drive to create.</p><p><em>Homo ludens</em>—<strong>playing man</strong>: culture arises from and is shaped by play. Play is not separate from society; it is how we test ideas, form relationships, and begin meaningful ventures.</p><p>I hope to continue aligning my efforts with playful yet productive projects in the future.</p></div>` : '';
   target.innerHTML = `<section class="collection-hero"><h1>${collection.title}</h1>${studentStatement}</section>${sections}`;
 }
 
@@ -114,7 +114,7 @@ function projectPage() {
   const boardSection = boards ? `<section class="project-board"><header><p class="eyebrow">Complete presentation</p><h2>Project Board</h2></header><div>${boards}</div></section>` : '';
   const detailHero = project.detailHero || project.hero;
   const meta = `${project.year ? `<div><dt>Year</dt><dd>${project.year}</dd></div>` : ''}${project.tools ? `<div><dt>Tools</dt><dd>${project.tools}</dd></div>` : ''}`;
-  target.innerHTML = `<section class="project-intro"><section class="project-summary"><p class="eyebrow">${project.category}</p><h1>${project.title}</h1>${meta ? `<dl>${meta}</dl>` : ''}${project.note ? `<p class="project-note">${project.note}</p>` : ''}${project.description ? `<p class="lede">${project.description}</p>` : ''}${text ? `<div class="source-text">${text}</div>` : ''}${links}</section><section class="project-page-hero"><figure><img class="project-hero-main" src="${detailHero}" alt="${project.title} hero image">${project.heroHover ? `<img class="project-hero-hover" src="${project.heroHover}" alt="">` : ''}</figure></section></section>${images ? `<section class="project-narrative">${images}</section>` : ''}${boardSection}`;
+  target.innerHTML = `<section class="project-intro project-intro--${id}"><section class="project-summary"><p class="eyebrow">${project.category}</p><h1>${project.title}</h1>${meta ? `<dl>${meta}</dl>` : ''}${project.note ? `<p class="project-note">${project.note}</p>` : ''}${project.description ? `<p class="lede">${project.description}</p>` : ''}${text ? `<div class="source-text">${text}</div>` : ''}${links}</section><section class="project-page-hero"><figure><img class="project-hero-main" src="${detailHero}" alt="${project.title} hero image">${project.heroHover ? `<img class="project-hero-hover" src="${project.heroHover}" alt=""><span class="hero-hover-prompt">Hover over image</span>` : ''}</figure></section></section>${images ? `<section class="project-narrative">${images}</section>` : ''}${boardSection}`;
 }
 
 function constrainImageZoom() {
@@ -123,10 +123,17 @@ function constrainImageZoom() {
     if (!image) return;
     const expand = () => {
       const bounds = image.getBoundingClientRect();
-      const horizontalOrigin = bounds.left + bounds.width / 2 < window.innerWidth / 2 ? 'left' : 'right';
+      const chapter = item.closest('.project-chapter');
+      const chapterBounds = chapter?.getBoundingClientRect();
+      const chapterStyle = chapter ? getComputedStyle(chapter) : null;
+      const horizontalMargin = chapterStyle ? parseFloat(chapterStyle.paddingLeft) : window.innerWidth * (window.innerWidth <= 760 ? .05 : .04);
+      const leftBoundary = Math.max(window.innerWidth * (window.innerWidth <= 760 ? .05 : .04), (chapterBounds?.left || 0) + horizontalMargin);
+      const rightBoundary = Math.min(window.innerWidth * (1 - (window.innerWidth <= 760 ? .05 : .04)), (chapterBounds?.right || window.innerWidth) - horizontalMargin);
+      const horizontalOrigin = bounds.left + bounds.width / 2 < (leftBoundary + rightBoundary) / 2 ? 'left' : 'right';
       const verticalOrigin = bounds.top + bounds.height / 2 < window.innerHeight / 2 ? 'top' : 'bottom';
-      const availableWidth = horizontalOrigin === 'left' ? window.innerWidth - bounds.left - 20 : bounds.right - 20;
-      const availableHeight = verticalOrigin === 'top' ? window.innerHeight - bounds.top - 20 : bounds.bottom - 20;
+      const verticalInset = Math.max(20, window.innerHeight * (window.innerWidth <= 760 ? .05 : .04));
+      const availableWidth = horizontalOrigin === 'left' ? rightBoundary - bounds.left : bounds.right - leftBoundary;
+      const availableHeight = verticalOrigin === 'top' ? window.innerHeight - bounds.top - verticalInset : bounds.bottom - verticalInset;
       const scale = Math.max(1, Math.min(3, availableWidth / bounds.width, availableHeight / bounds.height));
       item.style.setProperty('--zoom-scale', scale.toFixed(3));
       item.style.setProperty('--zoom-origin', `${horizontalOrigin} ${verticalOrigin}`);
@@ -169,6 +176,19 @@ function protectImages() {
   });
 }
 
+function backToTop() {
+  const button = document.createElement('button');
+  button.className = 'back-to-top';
+  button.type = 'button';
+  button.textContent = 'Back to top ↑';
+  button.setAttribute('aria-label', 'Back to top');
+  button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  document.body.append(button);
+  const update = () => button.classList.toggle('is-visible', window.scrollY > 480);
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
 workMenu();
 responsiveHeader();
 index();
@@ -177,3 +197,4 @@ projectPage();
 constrainImageZoom();
 joineryCataloguePreview();
 protectImages();
+backToTop();

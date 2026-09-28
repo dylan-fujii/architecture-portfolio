@@ -122,3 +122,14 @@ body{font-size:var(--reading-size)}
 .joinery-catalogue-preview{position:absolute;inset:0;z-index:30;display:none;align-items:center;justify-content:center;padding:clamp(1rem,2vw,2.5rem);background:#fff;pointer-events:none}
 .joinery-catalogue-preview.is-visible{display:flex}
 .joinery-catalogue-preview img{display:block;width:100%;height:100%;max-width:none;object-fit:contain;padding:0;transform:none!important;box-shadow:none!important}
+
+/* Shared controls match the reading scale and keep enlarged studies inside the page field. */
+.site-header nav,.home-link{font-size:var(--reading-size)}
+.project-tile-altadena{grid-column:span 1}
+.project-tile-altadena figure{width:100%;aspect-ratio:16/10}
+.project-tile-altadena figure .tile-hero-image,.project-tile-altadena figure .tile-hover-image{width:100%;height:100%;object-fit:cover}
+.hero-hover-prompt{position:absolute;right:1rem;bottom:1rem;z-index:2;color:#fff;font:.64rem var(--mono);letter-spacing:.07em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.7);pointer-events:none}
+.back-to-top{position:fixed;right:4vw;bottom:2rem;z-index:40;border:1px solid var(--ink);background:#fff;color:var(--ink);padding:.65rem .8rem;font:var(--caption-size) var(--mono);letter-spacing:.03em;cursor:pointer;opacity:0;transform:translateY(1rem);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+.back-to-top.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:var(--ink);color:#fff}
+@media(max-width:760px){.site-header nav,.home-link{font-size:.95rem}.back-to-top{right:5vw;bottom:1.25rem}.hero-hover-prompt{right:.75rem;bottom:.75rem;font-size:.58rem}}
