@@ -61,16 +61,16 @@ function joineryProjectPage(project) {
   <section class="joinery-concept"><div class="joinery-concept-copy"><p class="eyebrow">01 / Concept</p><h2>Live-Work Walk-Up Housing</h2><p>As the Village faces change through new development from Ball State, the Joinery responds to changing conditions through a form that fits its context while using durable, resilient materials.</p><p>Within the current context, housing is largely limited to single-family homes or large student apartments. Growth near campus prioritizes students, displacing locals and creating a divide between communities; inactive ground levels reduce neighborhood vibrancy.</p><p>The proposal introduces diverse unit types, increasing density while maintaining neighborhood scale; it integrates retail and shared spaces to encourage daily interaction, with transparent active edges and outdoor rooms.</p></div><figure class="joinery-parti"><img src="assets/images/joinery-parti-and-concept.png" alt="Scale, lighting, circulation, user privacy, and public-private parti diagrams"><figcaption>Parti: scale, light, circulation, privacy, and public life</figcaption></figure><figure class="joinery-history"><img src="assets/images/joinery-village-timeline.png" alt="Historical Village timeline"><figcaption>Historical context: the Village</figcaption></figure></section>
   <section class="joinery-context joinery-context--axon"><header><p class="eyebrow">02 / Site</p><h2>Site + context</h2></header><figure><img src="assets/images/joinery-site-context-cropped.png" alt="The relation between the Joinery, Ball State University, and the Village"><figcaption>The relation between Ball State University and the Village</figcaption></figure></section>
   <section class="joinery-isonometric"><header><p class="eyebrow">03 / Building systems</p><h2>Spatial planning</h2></header><figure><img src="assets/images/joinery-labeled-isonometric.png" alt="Labeled isonometric building diagram with solar-assisted HVAC"><figcaption>Spatial planning and solar-assisted air system</figcaption></figure></section>
-  <section class="joinery-catalogue"><header><p class="eyebrow">04 / Technical catalogue</p><h2>Drawings + models</h2><p>Open an image to study the full drawing.</p></header><div class="joinery-catalogue-grid">
-    <a href="assets/images/joinery-physical-model-context.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model-context.png" alt="Physical model showing the Joinery structure"></a>
-    <a href="assets/images/joinery-glue-fujii-robertson4.png" target="_blank" rel="noopener"><img src="assets/images/joinery-glue-fujii-robertson4.png" alt="Village Joinery visualization"></a>
-    <a href="assets/images/timber-p03-12.jpg" target="_blank" rel="noopener"><img src="assets/images/timber-p03-12.jpg" alt="Structural drawing"></a>
-    <a href="assets/images/joinery-natural-ventilation-axon.png" target="_blank" rel="noopener"><img src="assets/images/joinery-natural-ventilation-axon.png" alt="Building axonometric explaining natural ventilation"></a>
-    <a href="assets/images/joinery-roof-cladding-centered.png" target="_blank" rel="noopener"><img src="assets/images/joinery-roof-cladding-centered.png" alt="Centered roof cladding detail"></a>
-    <a href="assets/images/joinery-wall-cladding-centered.png" target="_blank" rel="noopener"><img src="assets/images/joinery-wall-cladding-centered.png" alt="Centered wall cladding detail"></a>
-    <a href="assets/images/joinery-hvac-spatial-planning.png" target="_blank" rel="noopener"><img src="assets/images/joinery-hvac-spatial-planning.png" alt="HVAC spatial planning diagram"></a>
-    <a href="assets/images/joinery-concept-studies.png" target="_blank" rel="noopener"><img src="assets/images/joinery-concept-studies.png" alt="The concept studies"></a>
-    <a href="assets/images/joinery-physical-model.png" target="_blank" rel="noopener"><img src="assets/images/joinery-physical-model.png" alt="Physical model photograph"></a>
+  <section class="joinery-catalogue"><header><p class="eyebrow">04 / Technical catalogue</p><h2>Drawings + models</h2><p>Hover over an image to study the full drawing.</p></header><div class="joinery-catalogue-grid">
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-physical-model-context.png" alt="Physical model showing the Joinery structure"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-glue-fujii-robertson4.png" alt="Village Joinery visualization"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/timber-p03-12.jpg" alt="Structural drawing"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-natural-ventilation-axon.png" alt="Building axonometric explaining natural ventilation"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-roof-cladding-centered.png" alt="Roof assembly axonometric with material schedule"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-wall-cladding-centered.png" alt="Wall assembly axonometric with material schedule"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-hvac-spatial-planning.png" alt="HVAC spatial planning diagram"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-concept-studies.png" alt="The concept studies"></div>
+    <div class="joinery-catalogue-item"><img src="assets/images/joinery-physical-model.png" alt="Physical model photograph"></div>
     <div class="joinery-catalogue-preview" aria-hidden="true"><img alt=""></div>
   </div></section>`;
 }
@@ -110,7 +110,7 @@ function projectPage() {
   const text = project.text.map((paragraph) => `<p>${paragraph}</p>`).join('');
   const images = narrativeMedia(project, id);
   const links = (project.links || []).map(([label, href]) => `<a class="project-reference" href="${href}" target="_blank" rel="noopener">${label} ↗</a>`).join('');
-  const boards = (project.boards || []).map(([src, alt]) => `<figure class="project-board-image"><a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="${alt}"></a><figcaption>${alt} - open full board ↗</figcaption></figure>`).join('');
+  const boards = (project.boards || []).map(([src, alt]) => `<figure class="project-board-image"><img src="${src}" alt="${alt}"><figcaption>${alt}</figcaption></figure>`).join('');
   const boardSection = boards ? `<section class="project-board"><header><p class="eyebrow">Complete presentation</p><h2>Project Board</h2></header><div>${boards}</div></section>` : '';
   const detailHero = project.detailHero || project.hero;
   const meta = `${project.year ? `<div><dt>Year</dt><dd>${project.year}</dd></div>` : ''}${project.tools ? `<div><dt>Tools</dt><dd>${project.tools}</dd></div>` : ''}`;
@@ -145,7 +145,7 @@ function joineryCataloguePreview() {
     const preview = grid.querySelector('.joinery-catalogue-preview');
     const previewImage = preview?.querySelector('img');
     if (!preview || !previewImage) return;
-    grid.querySelectorAll('a').forEach((item) => {
+    grid.querySelectorAll('.joinery-catalogue-item').forEach((item) => {
       const image = item.querySelector('img');
       if (!image) return;
       const show = () => {
@@ -162,6 +162,13 @@ function joineryCataloguePreview() {
   });
 }
 
+function protectImages() {
+  document.querySelectorAll('img').forEach((image) => { image.draggable = false; });
+  document.addEventListener('contextmenu', (event) => {
+    if (event.target instanceof HTMLImageElement) event.preventDefault();
+  });
+}
+
 workMenu();
 responsiveHeader();
 index();
@@ -169,3 +176,4 @@ collectionPage();
 projectPage();
 constrainImageZoom();
 joineryCataloguePreview();
+protectImages();
