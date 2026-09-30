@@ -80,7 +80,7 @@ const projectChapters = {
   bolt: [["01 / Envelope", "Street elevation", [0, 1]], ["02 / Material study", "Physical model", [2]], ["03 / Organization", "Floor plans", [3, 4]]],
   highechelon: [["01 / Site + movement", "Floor plans", [0]], ["02 / Study", "Physical model", [1]]],
   uniformed: [["01", "Building study", [0, 1]], ["02", "Parti diagram", [2]], ["03", "Site: Broad Ripple, IN", [3]], ["04", "Visualizations", [4, 5, 6]]],
-  steel: [["01 / Manifesto", "Steel as a material and idea", [0]], ["02 / Process", "Tectonic manual + Rhino study", [1, 2]], ["03 / Outcome", "The telescope reimagined", [3]]],
+  steel: [["01 / Manifesto", "Steel as a material and idea", [0]], ["02 / Process", "Tectonic manual + Rhino study", [1, 2]], ["03 / Initial Collage", "Abstract Collage", [3]]],
   tectonics: [["01 / Material study", "Physical model", [0]], ["02 / Section", "Section cuts", [1, 2]]],
   inverse: [["01 / Inversion", "Exploded study model", [0]]],
   altadena: [["01", "Natural disaster: fire", [0, 1]], ["02", "Exploded axon", [2]], ["03", "Section studies", [3, 4]]],
