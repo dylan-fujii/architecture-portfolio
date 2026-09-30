@@ -155,7 +155,7 @@ body{font-size:var(--reading-size)}
 
 /* Joinery editorial sequence: graphics use the same content field as the opening hero. */
 .joinery-concept{max-width:1600px;padding:7vw 4vw}
-.joinery-parti{grid-column:1/-1;margin-top:2vw}
+.joinery-parti{grid-column:2;margin-top:0}
 .joinery-history{max-width:none}
 .joinery-context--axon{max-width:1600px;min-height:0;display:block;padding:7vw 4vw}
 .joinery-context--axon header{max-width:32rem;margin-bottom:3vw}
