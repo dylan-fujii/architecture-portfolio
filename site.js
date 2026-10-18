@@ -49,7 +49,8 @@ function collectionPage() {
   const makeTiles = (ids) => ids.map((projectId) => {
     const project = projects[projectId];
     const studio = studioByProject[projectId];
-    return `<a class="project-tile project-tile-${projectId} ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}<figcaption class="tile-overlay"><strong class="tile-mobile-title">${project.title}</strong><span class="tile-year">${project.yearLabel || project.year}</span>${studio ? `<small class="tile-studio">Studio ${studio}</small>` : ''}</figcaption></figure><h3>${project.title}</h3></a>`;
+    const hoverPrompt = projectId === 'altadena' && project.heroHover ? '<span class="tile-hover-prompt">Hover over image</span>' : '';
+    return `<a class="project-tile project-tile-${projectId} ${projectId === "joinery" ? "project-tile-featured" : ""}" href="project.html?project=${projectId}"><figure><img class="tile-hero-image" src="${project.hero}" alt="${project.title}">${project.heroHover ? `<img class="tile-hover-image" src="${project.heroHover}" alt="">` : ''}${hoverPrompt}<figcaption class="tile-overlay"><strong class="tile-mobile-title">${project.title}</strong><span class="tile-year">${project.yearLabel || project.year}</span>${studio ? `<small class="tile-studio">Studio ${studio}</small>` : ''}</figcaption></figure><h3>${project.title}</h3></a>`;
   }).join('');
   const sections = collection.groups ? collection.groups.map((group) => `<section id="${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}" class="media-section"><header><h2>${group.title}</h2>${group.intro ? `<p>${group.intro}</p>` : ''}</header><div class="portfolio-grid portfolio-grid-${group.title.toLowerCase().replace(/[^a-z]+/g, '-')}">${makeTiles(group.ids)}</div></section>`).join('') : `<section class="media-section"><header><p class="eyebrow">Professional work</p><h2>${collection.title}</h2><p>${collection.intro}</p></header><div class="portfolio-grid">${makeTiles(collection.ids)}</div></section>`;
   const studentStatement = id === 'student' ? `<div class="collection-statement"><p>The projects are a culmination of meaningful mentorships and relationships, late nights in the studio, and a drive to create.</p><p><em>Homo ludens</em>—<strong>playing man</strong>: culture arises from and is shaped by play. Play is not separate from society; it is how we test ideas, form relationships, and begin meaningful ventures.</p><p>I hope to continue aligning my efforts with playful yet productive projects in the future.</p></div>` : '';
@@ -114,7 +115,22 @@ function projectPage() {
   const boardSection = boards ? `<section class="project-board"><header><p class="eyebrow">Complete presentation</p><h2>Project Board</h2></header><div>${boards}</div></section>` : '';
   const detailHero = project.detailHero || project.hero;
   const meta = `${project.year ? `<div><dt>Year</dt><dd>${project.year}</dd></div>` : ''}${project.tools ? `<div><dt>Tools</dt><dd>${project.tools}</dd></div>` : ''}`;
-  target.innerHTML = `<section class="project-intro project-intro--${id}"><section class="project-summary"><p class="eyebrow">${project.category}</p><h1>${project.title}</h1>${meta ? `<dl>${meta}</dl>` : ''}${project.note ? `<p class="project-note">${project.note}</p>` : ''}${project.description ? `<p class="lede">${project.description}</p>` : ''}${text ? `<div class="source-text">${text}</div>` : ''}${links}</section><section class="project-page-hero"><figure><img class="project-hero-main" src="${detailHero}" alt="${project.title} hero image">${project.heroHover ? `<img class="project-hero-hover" src="${project.heroHover}" alt=""><span class="hero-hover-prompt">Hover over image</span>` : ''}</figure></section></section>${images ? `<section class="project-narrative">${images}</section>` : ''}${boardSection}`;
+  target.innerHTML = `<section class="project-intro project-intro--${id}"><section class="project-summary"><p class="eyebrow">${project.category}</p><h1>${project.title}</h1>${meta ? `<dl>${meta}</dl>` : ''}${project.note ? `<p class="project-note">${project.note}</p>` : ''}${project.description ? `<p class="lede">${project.description}</p>` : ''}${text ? `<div class="source-text">${text}</div>` : ''}${links}</section><section class="project-page-hero"><figure${project.heroHover ? ' class="project-hero-swap" tabindex="0" role="button" aria-label="Reveal alternate project rendering" aria-pressed="false"' : ''}><img class="project-hero-main" src="${detailHero}" alt="${project.title} hero image">${project.heroHover ? `<img class="project-hero-hover" src="${project.heroHover}" alt=""><span class="hero-hover-prompt">Hover over image</span>` : ''}</figure></section></section>${images ? `<section class="project-narrative">${images}</section>` : ''}${boardSection}`;
+}
+
+function enableHeroSwaps() {
+  document.querySelectorAll('.project-hero-swap').forEach((figure) => {
+    const toggle = () => {
+      const expanded = figure.classList.toggle('is-hover-revealed');
+      figure.setAttribute('aria-pressed', String(expanded));
+    };
+    figure.addEventListener('click', toggle);
+    figure.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      toggle();
+    });
+  });
 }
 
 function constrainImageZoom() {
@@ -194,6 +210,7 @@ responsiveHeader();
 index();
 collectionPage();
 projectPage();
+enableHeroSwaps();
 constrainImageZoom();
 joineryCataloguePreview();
 protectImages();

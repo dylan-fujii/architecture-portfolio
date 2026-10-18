@@ -162,3 +162,35 @@ body{font-size:var(--reading-size)}
 .joinery-context--axon figure{display:block}
 .joinery-context--axon img{max-height:none}
 @media(max-width:760px){.joinery-concept,.joinery-context--axon{padding:15vw 5vw}.joinery-parti{grid-column:auto;margin-top:0}}
+
+/* The homepage is an editorial About spread: a quiet biography beside an
+   intentionally irregular, unframed sequence of personal photographs. */
+.about-home{max-width:1640px;min-height:calc(100dvh - 78px);margin:0 auto;padding:clamp(3.5rem,7vw,8.5rem) 4vw clamp(5rem,8vw,10rem);display:grid;grid-template-columns:minmax(17rem,.68fr) minmax(0,1.32fr);gap:clamp(3rem,7vw,10rem);align-items:start}
+.about-home-copy{position:sticky;top:clamp(6.5rem,10vw,9.5rem);max-width:37rem}
+.about-home-copy .eyebrow{margin-bottom:2rem}
+.about-home-copy h1{font-size:clamp(3.35rem,7.2vw,8rem);letter-spacing:-.085em;line-height:.88;font-weight:500;margin:0 0 2.75rem}
+.about-home-copy h1 span{display:block;margin-top:.65rem;font-size:.32em;letter-spacing:-.045em}
+.about-home-copy>p:not(.eyebrow){max-width:35rem;margin:0 0 1.15rem;font-size:var(--reading-size);line-height:1.58}
+.about-links{display:grid;justify-items:start;gap:.85rem;margin-top:2.75rem}
+.about-link{display:inline-flex;align-items:baseline;gap:.12rem;border-bottom:1px solid var(--ink);padding-bottom:.24rem;font-size:clamp(.93rem,.82rem + .16vw,1.1rem);line-height:1.25;transition:color .2s,border-color .2s}
+.about-link:hover{color:var(--blue);border-color:var(--blue)}
+.about-link--pending{color:var(--slate);border-color:var(--line);cursor:default}
+.about-link--pending small{margin-left:.45rem;font:var(--caption-size) var(--mono);letter-spacing:.04em;text-transform:none}
+.about-collage{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-auto-flow:row dense;column-gap:clamp(.8rem,1.4vw,1.55rem);row-gap:clamp(.95rem,2vw,2rem);align-items:start;padding-top:clamp(.25rem,2vw,2.5rem)}
+.about-collage figure{margin:0;background:#fff;overflow:hidden}
+.about-collage img{display:block;width:100%;height:auto;max-width:none;object-fit:contain}
+.about-collage-anchor{grid-column:1;grid-row:span 2;align-self:start}
+.about-collage-japan{grid-column:2;margin-top:clamp(1.5rem,6vw,6.5rem)}
+.about-collage-bear{grid-column:2;align-self:end;margin-left:clamp(-.85rem,-1.3vw,-.35rem)}
+.about-collage-table{grid-column:1;width:82%;margin-top:clamp(.2rem,1.2vw,1rem)}
+.about-collage-community{grid-column:2;width:92%;justify-self:end;margin-top:clamp(-1.5rem,-2.7vw,-.45rem)}
+.redirect-page{display:grid;min-height:100dvh;place-items:center;padding:2rem;color:var(--slate)}
+.redirect-page p{font:var(--reading-size) var(--sans)}
+.redirect-page a{color:var(--ink);border-bottom:1px solid currentColor}
+
+/* Fire-Proof Altadena announces its two-state hero before the interaction. */
+.project-tile-altadena .tile-hover-prompt{position:absolute;right:clamp(.7rem,1.2vw,1.25rem);bottom:clamp(.7rem,1.2vw,1.25rem);z-index:4;max-width:calc(100% - 1.4rem);padding:.38rem .5rem;background:rgba(0,0,0,.3);color:#fff;font:500 clamp(.78rem,.67rem + .24vw,1.08rem)/1.15 var(--sans);letter-spacing:-.015em;text-shadow:0 1px 10px rgba(0,0,0,.62);pointer-events:none}
+.project-intro--altadena .hero-hover-prompt{right:clamp(1rem,2vw,2rem);bottom:clamp(1rem,2vw,2rem);padding:.5rem .7rem;background:rgba(0,0,0,.25);font:500 clamp(1rem,.72rem + .55vw,1.7rem)/1.1 var(--sans);letter-spacing:-.025em;text-transform:none}
+.project-page-hero .project-hero-swap:focus-visible{outline:2px solid var(--ink);outline-offset:4px}.project-page-hero .project-hero-swap:focus-visible .project-hero-hover,.project-page-hero .project-hero-swap.is-hover-revealed .project-hero-hover{opacity:1}
+@media(max-width:1080px){.about-home{grid-template-columns:1fr;gap:3rem;padding:13vw 5vw 17vw}.about-home-copy{position:static;max-width:42rem}.about-collage{max-width:52rem;width:100%;padding-top:0}}
+@media(max-width:760px){.about-home{gap:2.75rem;padding-top:15vw}.about-home-copy h1{font-size:clamp(3rem,15vw,5.2rem);margin-bottom:2.3rem}.about-links{margin-top:2.25rem;gap:.8rem}.about-link{font-size:.94rem}.about-collage{column-gap:.7rem;row-gap:.85rem}.about-collage-japan{margin-top:1.25rem}.about-collage-bear{margin-left:-.35rem}.about-collage-table{width:88%}.about-collage-community{margin-top:-.45rem}.project-tile-altadena .tile-hover-prompt{font-size:.78rem}.project-intro--altadena .hero-hover-prompt{font-size:1.12rem}}
